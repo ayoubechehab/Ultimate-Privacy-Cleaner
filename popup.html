@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <div class="logo">🛡️</div>
+      <div class="title-container">
+        <h1>Ultimate</h1>
+        <h2>Privacy Cleaner</h2>
+      </div>
+    </header>
+
+    <!-- ============ CLEANER (auto interval) ============ -->
+    <main id="view-cleaner" class="view active">
+      <div class="clean-circle-container">
+        <button id="btn-save-interval" class="clean-circle">
+          <span class="btn-text">CLEAN<br>&amp; AUTO</span>
+        </button>
+        <p class="status" id="cleaner-status">🛡️ Auto-cleaning ready</p>
+        <button id="btn-turn-off" class="action-btn-stop hidden">Turn off auto-clean</button>
+      </div>
+
+      <div class="interval-group">
+        <label for="globalInterval">Interval (minutes)</label>
+        <input type="number" id="globalInterval" min="1" value="60">
+      </div>
+
+      <div class="checklist">
+        <p class="checklist-title">Data to delete</p>
+        <label><input type="checkbox" data-tab="cleaner" data-type="cookies" checked> <span>Cookies</span></label>
+        <label><input type="checkbox" data-tab="cleaner" data-type="cache" checked> <span>Cache</span></label>
+        <label><input type="checkbox" data-tab="cleaner" data-type="localStorage" checked> <span>LocalStorage</span></label>
+        <label><input type="checkbox" data-tab="cleaner" data-type="sessionStorage" checked> <span>SessionStorage</span></label>
+        <label><input type="checkbox" data-tab="cleaner" data-type="indexedDB" checked> <span>IndexedDB</span></label>
+        <label><input type="checkbox" data-tab="cleaner" data-type="history"> <span>History entries</span></label>
+      </div>
+    </main>
+
+    <!-- ============ DOMAINS (specific sites) ============ -->
+    <main id="view-domains" class="view hidden">
+      <div class="view-header">
+        <h3>Specific <span class="highlight">Sites</span></h3>
+        <p>Cleaned automatically the moment you visit them. Malformed URLs (e.g., <code>https;//</code>) are handled.</p>
+      </div>
+
+      <div class="domain-input-group">
+        <input type="text" id="new-domain" placeholder="e.g., soundcloud.com">
+        <button id="btn-add-domain">Add</button>
+      </div>
+
+      <ul id="domain-list" class="domain-list"></ul>
+
+      <div class="checklist">
+        <p class="checklist-title">Data to delete on these sites</p>
+        <label><input type="checkbox" data-tab="domains" data-type="cookies" checked> <span>Cookies</span></label>
+        <label><input type="checkbox" data-tab="domains" data-type="cache" checked> <span>Cache (per-site)</span></label>
+        <label><input type="checkbox" data-tab="domains" data-type="localStorage" checked> <span>LocalStorage</span></label>
+        <label><input type="checkbox" data-tab="domains" data-type="sessionStorage" checked> <span>SessionStorage</span></label>
+        <label><input type="checkbox" data-tab="domains" data-type="indexedDB" checked> <span>IndexedDB</span></label>
+        <label><input type="checkbox" data-tab="domains" data-type="history" checked> <span>History entries</span></label>
+      </div>
+
+      <button id="btn-clean-domains" class="action-btn">Clean these now</button>
+      <p class="status" id="domains-status"></p>
+    </main>
+
+    <!-- ============ PANIC (immediate wipe) ============ -->
+    <main id="view-panic" class="view hidden">
+      <div class="view-header">
+        <h3>Panic Button</h3>
+        <p>Immediate, total wipe in one click.</p>
+      </div>
+
+      <div class="panic-container">
+        <button id="btn-panic" class="panic-circle">
+          <span class="panic-icon">!</span>
+          <span class="panic-text">PANIC<br>NOW</span>
+        </button>
+      </div>
+
+      <div class="checklist">
+        <p class="checklist-title">Data to delete</p>
+        <label><input type="checkbox" data-tab="panic" data-type="cookies" checked> <span>Cookies</span></label>
+        <label><input type="checkbox" data-tab="panic" data-type="cache" checked> <span>Cache</span></label>
+        <label><input type="checkbox" data-tab="panic" data-type="localStorage" checked> <span>LocalStorage</span></label>
+        <label><input type="checkbox" data-tab="panic" data-type="sessionStorage" checked> <span>SessionStorage</span></label>
+        <label><input type="checkbox" data-tab="panic" data-type="indexedDB" checked> <span>IndexedDB</span></label>
+        <label><input type="checkbox" data-tab="panic" data-type="history" checked> <span>Full browsing history</span></label>
+      </div>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-target="view-cleaner">
+        <span class="icon">🧹</span><span>Cleaner</span>
+      </button>
+      <button class="nav-item" data-target="view-domains">
+        <span class="icon">🌐</span><span>Domains</span>
+      </button>
+      <button class="nav-item" data-target="view-panic">
+        <span class="icon red">🚨</span><span>Panic</span>
+      </button>
+    </nav>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
